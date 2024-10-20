@@ -14,7 +14,7 @@ class EmbeddingModel(ABC):
         pass
 
     @abstractmethod
-    def get_embedding(self, text):
+    def get_embeddings(self, text):
         pass
 
 
@@ -29,7 +29,7 @@ class LocalEmbeddingModel(EmbeddingModel):
         else:
             raise ValueError("Model path not specified in config.")
 
-    def get_embedding(self, text):
+    def get_embeddings(self, text):
         inputs = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True)
         with torch.no_grad():
             outputs = self.model(**inputs)
@@ -47,7 +47,7 @@ class HuggingFaceEmbeddingModel(EmbeddingModel):
         else:
             raise ValueError("Model name not specified in config.")
 
-    def get_embedding(self, text):
+    def get_embeddings(self, text):
         inputs = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True)
         with torch.no_grad():
             outputs = self.model(**inputs)

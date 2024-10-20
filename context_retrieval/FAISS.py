@@ -7,7 +7,6 @@ from ContextStore import ContextStore
 import faiss
 import numpy as np
 import pandas as pd
-from EmbeddingModels import HuggingFaceEmbeddingModel, LocalEmbeddingModel
 
 
 class FAISS(ContextStore):
